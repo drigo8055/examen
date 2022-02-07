@@ -8,7 +8,8 @@ import java.util.Properties;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import static spark.Spark.get;
+import static spark.Spark.port;
 /**
  * Hello world!
  *
@@ -17,6 +18,7 @@ public class App
 {
     public static void main( String[] args ) throws Exception
     {
+        port(3456);
         System.out.println( "Convirtiendo objeto a JSON..." );
         Properties properties = new Properties();
         properties.load(App.class.getClassLoader().getResourceAsStream("vars.properties"));
@@ -27,6 +29,7 @@ public class App
         ObjectMapper mapper = new ObjectMapper();
         String resultado = mapper.writeValueAsString(persona);
         System.out.println(resultado);
+        //get("/entornos", (req, res) -> "resultado");
     }
 
     public String obtenerJson(Persona persona) throws Exception {
